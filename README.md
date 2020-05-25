@@ -26,7 +26,15 @@ $> ps -ef | grep smon\
 oracle   31236     1  0 00:18 ?        00:00:00 ora_smon_oradnet\
 oracle   31491 30140  0 00:22 pts/1    00:00:00 grep --color=auto smon\
 
+Si la instancia no sube o se baja luego de unos minutos, se debe revisar los archivos alert_*.log
+y *_clmn_2811.trc
 
+Ingresar a sqlplus
+$> sqlplus / as sysdba
+SQL> connect sys as sysdba;
+SQL> show parameter dump;
+
+$> find /u01 -name alert_*.log
 
 
 
