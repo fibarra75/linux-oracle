@@ -55,9 +55,12 @@ systemctl status oracle-rdbms
 ps -ef | grep listener | grep -v grep
 ps -ef | grep smon
 systemctl start oracle-rdbms
-systemctl stop oracle-rdbms
-firewall-cmd --zone=public --add-port=1521/tcp --add-port=5500/tcp --add-port=5520/tcp --add-port=3938/tcp --permanent
-firewall-cmd --reload
+systemctl stop oracle-rdbms\
+
+firewall-cmd --zone=public --add-port=1521/tcp --add-port=5500/tcp --add-port=5520/tcp --add-port=3938/tcp --permanent\
+
+firewall-cmd --reload\
+
 cat /etc/oratab
 vi /etc/oratab
 ifconfig | grep eth -A 2|grep "inet addr"
