@@ -30,11 +30,41 @@ Si la instancia no sube o se baja luego de unos minutos, se debe revisar los arc
 y *_clmn_2811.trc
 
 Ingresar a sqlplus\
-$> sqlplus / as sysdba\
+$>sqlplus / as sysdba\
 SQL> connect sys as sysdba;\
 SQL> show parameter dump;
 
-$> find /u01 -name alert_*.log
+$>find /u01 -name alert_*.log
+
+Bajar Oracle y Linux
+
+$>dbshut oradnet
+$>su root
+$
+
+Comando varios
+
+Uso de memoria
+$>cat /proc/meminfo
+Archivo configuracion IP
+$>cat /etc/sysconfig/network-scripts/ifcfg-enp2s0
+Restaurar interfaz de red
+$>systemctl restart network
+ip a
+systemctl status oracle-rdbms
+ps -ef | grep listener | grep -v grep
+ps -ef | grep smon
+systemctl start oracle-rdbms
+systemctl stop oracle-rdbms
+firewall-cmd --zone=public --add-port=1521/tcp --add-port=5500/tcp --add-port=5520/tcp --add-port=3938/tcp --permanent
+firewall-cmd --reload
+cat /etc/oratab
+vi /etc/oratab
+ifconfig | grep eth -A 2|grep "inet addr"
+awk '{ print $1 "\t" "'''$HOSTNAME'''"}'
+ifconfig | grep eth -A 2|grep "inet addr" | cut -d: -f2 | awk '{ print $1 "\t" "'''$HOSTNAME'''"}' >> /etc/hosts
+
+
 
 
 
